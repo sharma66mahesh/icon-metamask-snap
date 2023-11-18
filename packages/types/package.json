@@ -1,0 +1,10 @@
+{
+  "name": "metamask-icon-types",
+  "version": "0.0.1",
+  "types": "./index.d.ts",
+  "author": "Venture23 <info@venture23.xyz>",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "icon-snap",
+  "version": "0.0.1",
+  "description": "MetaMask snap for interacting with ICON dApps",
+  "main": "build/index.js",
+  "scripts": {
+    "lint:style": "eslint 'src/**/*.{js,ts,tsx}' --fix",
+    "lint:fix": "yarn run lint --fix",
+    "start": "yarn run build && yarn run serve",
+    "prebuild": "rm -rf build dist ipfs",
+    "build": "yarn run build:tsc && yarn run build:snap",
+    "build:tsc": "tsc --pretty --project tsconfig.build.json",
+    "build:snap": "yarn build:snap:bundle && yarn build:snap:postprocess && yarn build:snap:eval",
+    "build:snap:bundle": "mm-snap build -s build/index.js --verboseErrors --transpilationMode localAndDeps --stripComments --eval false",
+    "build:snap:postprocess": "mm-snap manifest --fix",
+    "build:snap:eval": "mm-snap eval -b dist/bundle.js --verboseErrors",
+    "serve": "mm-snap serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharma66mahesh/metamask-snap-icon.git"
+  },
+  "keywords": [
+    "icon",
+    "metamask",
+    "snap",
+    "plugin",
+    "dapp",
+    "wallet"
+  ],
+  "author": "Venture23 <info@venture23.xyz>",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/sharma66mahesh/metamask-snap-icon#readme",
+  "devDependencies": {
+    "metamask-icon-types": "workspace:^",
+    "@metamask/snaps-cli": "^1.0.2",
+    "@types/chai": "^4.2.10",
+    "@types/mocha": "^10.0.1",
+    "@types/sinon": "^7.5.2",
+    "@types/sinon-chai": "^3.2.3",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "chai": "^4.2.0",
+    "concurrently": "^5.1.0",
+    "eslint": "^8.17.0",
+    "mocha": "^7.1.1",
+    "sinon": "^9.0.1",
+    "sinon-chai": "^3.5.0",
+    "strict-event-emitter-types": "^2.0.0",
+    "ts-node": "^8.6.2",
+    "typescript": "4.7.3"
+  },
+  "dependencies": {
+    "@metamask/key-tree": "^9.0.0",
+    "@metamask/snaps-types": "^1.0.2",
+    "@metamask/snaps-ui": "^1.0.2",
+    "deepmerge": "^4.3.1",
+    "superstruct": "^1.0.3"
+  }
+}
